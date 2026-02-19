@@ -1,0 +1,17 @@
+def check_password():
+  username = "martial"
+  correct_password = "arts"
+  attempt = 3
+  while attempt > 0:
+    user_username = input("Enter username ")
+    password = input("Enter password ")
+    if user_username == username and correct_password == password:
+      return "Access granted"
+    else:
+      attempt -= 1
+      print(f"Access denied, you have {attempt} attempts left ")
+
+  else:
+    return "Access denied too many failed attempts "
+
+print(check_password())
