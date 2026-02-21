@@ -1,5 +1,5 @@
-username = 'tora'
-password = 'oni'
+username = 'agent'
+password = 'cia'
 attempt = 3
 
 while attempt > 0:
@@ -18,11 +18,11 @@ if attempt == 0:
   exit()
 
 while True:
-  command = input("How may I help you ")
+  command = input(f"How may I help you: {username} ")
   
   if command == 'files':
     print("Opening file... ")
-    sub = input("What file would you like to open? ")
+    sub = input(f"What file would you like to open: {username}? ")
     
     if sub == 'confidential':
       print("Opening confidential files ")
