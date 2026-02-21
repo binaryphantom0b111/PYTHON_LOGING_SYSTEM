@@ -1,0 +1,50 @@
+username = 'tora'
+password = 'oni'
+attempt = 3
+
+while attempt > 0:
+  user_username = input("Enter username ") .lower()
+  user_password = input("Enter password ") .lower()
+
+  if user_username == username and user_password == password:
+    print(f"Access granted, welcome {username} ")
+    break
+
+  else:
+    attempt -= 1
+    print(f"Credentials could not be verified, you have {attempt} attempts left ")
+    
+if attempt == 0:
+  exit()
+
+while True:
+  command = input("what do you need ")
+  if command == 'open':
+    print("Opening file... ")
+    sub = input("What file do you wanna open? ")
+    
+    if sub == 'confidential':
+      print("Opening confidential files ")
+    
+    elif sub == 'secret':
+      print("Accessing secret documents")
+   
+  elif command == 'create':
+    content = input("What do you want to write? ")
+    with open("sept_31st.txt", "w") as file:
+      file.write(content)
+      break
+
+  elif command =='exit':
+    print(f"Goodbye {username}")
+    break
+    
+    
+ 
+  else:
+    print(" File does not exist ")
+    
+      
+      
+
+ 
