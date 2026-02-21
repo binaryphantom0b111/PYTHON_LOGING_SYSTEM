@@ -30,17 +30,20 @@ while True:
       print("Accessing secret documents")
    
   elif command == 'create':
-    content = input("What do you want to write? ")
-    with open("sept_31st.txt", "w") as file:
+    content = input("Type information ")
+    
+    with open("secret_file.txt", "w") as file:
       file.write(content)
-      break
-
+      
+    with open("secret_file.txt", "r") as file:
+      txt = file.read()
+      print(txt)
+        
+   
   elif command =='exit':
     print(f"Goodbye {username}")
     break
     
-    
- 
   else:
     print(" File does not exist ")
     
