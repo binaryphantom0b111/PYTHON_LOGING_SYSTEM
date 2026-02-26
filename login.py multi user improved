@@ -1,0 +1,40 @@
+attempt = 3
+users = {
+  'agent':  'zero',
+  'spy':  'ghost',
+  'hacker':  'v'
+  }
+def login():
+  global attempt
+  while attempt > 0:
+    username = input("Enter username: ") .lower() .strip()
+    password = input("Enter password: ") .lower() .strip()
+    if username in users and users[username] == password:
+      print(f"Access granted, welcome {username}")
+      return username
+    else:
+      attempt -= 1
+      print("Unknown credentials you have {attempt} attempts remaining")
+
+  else:
+    print("Credentials could not be verified. ")
+    exit()
+
+#===========Main program=======================
+user = login()  ####login() handles everything
+while True:
+  command = input("What is your command?")
+
+  if command == 'help':
+    print("""
+    Available commands
+    help - shows all available commands
+    logout - logs you out
+    whoami - displays logged user
+    """)
+  elif command == 'whoami':
+    print(f"logged in user: {user}")
+    
+  elif command == 'logout':
+    print("Login out")
+    break
