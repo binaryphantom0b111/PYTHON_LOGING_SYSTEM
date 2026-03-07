@@ -1,0 +1,54 @@
+username = 'buu'
+password = 'neko'
+attempt = 3
+def menu():
+  while True:
+    print("1. whoami ")
+    print("2. Create file ")
+    print("3. Read file ")
+    print("4. Exit ")
+  
+    choice = input("choose an option: ") .lower() .strip()
+  
+    if choice == '1':
+      print(f"Online user: {username} ")
+
+    elif choice == '2':
+      print("File creation in progress...")
+      content = input("Input information: ") .lower() .strip()
+      with open("Black_ops.txt","w") as file:
+        file.write(content)
+
+    elif choice == '3':
+      try:
+        print("Accessing file... ") 
+        with open("Black_ops.txt","r") as file:
+          txt = file.read()
+          print(txt)
+      except FileNotFoundError:
+        print("File not found..")
+
+    elif choice == '4':
+      print("Terminating session..")
+      break
+    
+
+    else:
+      print("Invalid choice..")
+    
+while attempt > 0: 
+     
+  user_username = input("Enter username: ") .lower() .strip()
+  user_password = input("Enter password: ") .lower() .strip()
+  
+  if user_username == username and user_password == password:
+    print(f"Access granted, welcome {username} ")
+    menu()
+    break
+
+  else:
+    attempt-= 1
+    print(f"Access denied {attempt} attempts remaining ")
+if attempt == 0:
+  print("Unknown credentials.. ")
+     
