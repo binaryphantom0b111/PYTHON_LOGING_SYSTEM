@@ -1,40 +1,59 @@
-attempt = 3
-users = {
-  'agent':  'zero',
-  'spy':  'ghost',
-  'hacker':  'v'
+import os
+import getpass
+attempt =3
+users = {'buu': 'neko',
+      'tora': 'oni',
+      'king': 'pzr'
   }
-def login():
-  global attempt
-  while attempt > 0:
-    username = input("Enter username: ") .lower() .strip()
-    password = input("Enter password: ") .lower() .strip()
-    if username in users and users[username] == password:
-      print(f"Access granted, welcome {username}")
-      return username
-    else:
-      attempt -= 1
-      print(f"Unknown credentials you have {attempt} attempts remaining")
 
-  else:
-    print("Credentials could not be verified. ")
-    exit()
+def title_screen():
+  print("""██████╗  ██╗  ██╗ █████╗ ███╗   ██╗████████╗ ██████╗ ███╗   ███╗
+          ██╔══██╗ ██║  ██║██╔══██╗████╗  ██║╚══██╔══╝██╔═══██╗████╗ ████║
+          ██████╔╝ ███████║███████║██╔██╗ ██║   ██║   ██║   ██║██╔████╔██║
+          ██╔═══╝  ██╔══██║██╔══██║██║╚██╗██║   ██║   ██║   ██║██║╚██╔╝██║
+          ██║      ██║  ██║██║  ██║██║ ╚████║   ██║   ╚██████╔╝██║ ╚═╝ ██║
+          ╚═╝      ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝""")
+  input("Press enter to continue..")
 
-#===========Main program=======================
-user = login()  ####login() handles everything
-while True:
-  command = input("What is your command?")
+title_screen()
 
-  if command == 'help':
-    print("""
-    Available commands
-    help - shows all available commands
-    logout - logs you out
-    whoami - displays logged user
-    """)
-  elif command == 'whoami':
-    print(f"logged in user: {user}")
-    
-  elif command == 'logout':
-    print("Login out")
+
+while attempt > 0:
+  
+  username = input("Enter username: ") .lower().strip()
+  password = getpass.getpass("Enter password: ") .lower().strip()
+  
+  if username in users and users[username] == password:
+    print(f"Access granted, welcome: {username}")
     break
+  
+  else:
+    attempt -=1
+    print(f"wrong username or password you have {attempt} attempts remaining.")
+
+else:
+  print("Access denied, credentials could not be verified")
+  exit()
+
+while True:
+  command = input("Enter command: ")
+  
+  if command =='menu':
+    print("""available commands..
+            menu - shows menu
+            whoami - shows current user
+            clear - clears terminal
+            exit - terminates program""")
+  
+  elif command =='whoami':
+    print(f"current logged user: {username}")
+  
+  elif command =='clear':
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+  
+  elif command =='exit':
+    print("Session terminated...")
+    break
+  else:
+     print("Unknown command. Type 'menu' to see available commands.")
