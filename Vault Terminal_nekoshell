@@ -18,27 +18,28 @@ def menu_prompt():
     print(CYAN + "========================" + RESET)
     print(BLUE + "       SYSTEM MENU      " + RESET)
     print(CYAN + "========================" + RESET)
-    print(GREEN + "  whoami" + RESET + "     - show current user")
-    print(GREEN + "  open file" + RESET + "  - create/write a file")
-    print(GREEN + "  read file" + RESET + "  - read an existing file")
-    print(GREEN + "  append file" + RESET + " - add text to a file")
-    print(GREEN + "  users" + RESET + "      - list all system users")
-    print(GREEN + "  exit" + RESET + "       - return to main shell")
+    print(GREEN + "  whoami" + RESET + "       - show current user")
+    print(GREEN + "  open file" + RESET + "    - create/write a file")
+    print(GREEN + "  read file" + RESET + "    - read an existing file")
+    print(GREEN + "  append file" + RESET + "  - add text to a file")
+    print(GREEN + "  users" + RESET + "        - list all system users")
+    print(GREEN + "  status" + RESET + "       - system information")
+    print(GREEN + "  clear" + RESET + "        - clear the terminal")
+    print(GREEN + "  logout" + RESET + "       - log out of session")
+    print(GREEN + "  exit" + RESET + "         - return to main shell")
     print(CYAN + "========================" + RESET)
 
 
 def startup_banner():
     print(CYAN + "========================================" + RESET)
-    print(BLUE + "        N E K O S H E L L   v1.0" + RESET)
+    print(BLUE + " ==== N E K O S H E L L   v1.0 ====" + RESET)
     print(CYAN + "========================================" + RESET)
     print(GREEN + "   Secure Access Terminal Initialized" + RESET)
     print(GREEN + "   Authorization Required..." + RESET)
     print(CYAN + "----------------------------------------" + RESET)
-    input ("PRESS ENTER TO CONTINUE")
+    input("PRESS ENTER TO CONTINUE")
 
 startup_banner()
-
-
 
 
 def login():
@@ -109,6 +110,21 @@ while True:
         print(CYAN + "REGISTERED USERS:" + RESET)
         for u in users:
             print(GREEN + "  " + u + RESET)
+
+    elif command == 'status':
+        print(CYAN + "========== SYSTEM STATUS ==========" + RESET)
+        print(GREEN + f"  USER: {user}" + RESET)
+        print(GREEN + "  SYSTEM: ONLINE" + RESET)
+        print(GREEN + "  VERSION: NekoShell v1.0" + RESET)
+        print(GREEN + f"  ATTEMPTS REMAINING: {attempt}" + RESET)
+        print(CYAN + "===================================" + RESET)
+
+    elif command == 'logout':
+        print(RED + "LOGGING OUT..." + RESET)
+        break
+
+    elif command == 'clear':
+        print("\033c", end="")
 
     elif command == 'exit':
         print(RED + "TERMINATING SESSION" + RESET)
