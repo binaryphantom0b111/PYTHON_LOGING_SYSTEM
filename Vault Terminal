@@ -1,0 +1,104 @@
+attempt = 3
+
+# ANSI COLORS
+BLUE = "\033[94m"
+CYAN = "\033[96m"
+GREEN = "\033[92m"
+YELLOW = "\033[93m"
+RED = "\033[91m"
+RESET = "\033[0m"
+
+users = {
+    'yessiel': 'pizarro',
+    'julio': 'enrique',
+    'miranda': 'terrero'
+}
+
+def menu_prompt():
+    print(CYAN + "========================" + RESET)
+    print(BLUE + "       SYSTEM MENU      " + RESET)
+    print(CYAN + "========================" + RESET)
+    print(GREEN + "  whoami" + RESET + "     - show current user")
+    print(GREEN + "  open file" + RESET + "  - create/write a file")
+    print(GREEN + "  read file" + RESET + "  - read an existing file")
+    print(GREEN + "  append file" + RESET + " - add text to a file")
+    print(GREEN + "  users" + RESET + "      - list all system users")
+    print(GREEN + "  exit" + RESET + "       - return to main shell")
+    print(CYAN + "========================" + RESET)
+
+
+def login():
+    global attempt
+    while attempt > 0:
+        username = input(YELLOW + "ENTER USERNAME: " + RESET)
+        password = input(YELLOW + "ENTER PASSWORD: " + RESET)
+
+        if username in users and users[username] == password:
+            print(GREEN + f"ACCESS GRANTED, WELCOME: {username}" + RESET)
+            return username
+        else:
+            attempt -= 1
+            print(RED + f"ACCESS DENIED. YOU HAVE {attempt} ATTEMPTS LEFT" + RESET)
+
+    print(RED + "CREDENTIALS COULD NOT BE VERIFIED" + RESET)
+    return None
+
+
+user = login()
+if user:
+    print(GREEN + "==USER AUTHENTICATED==" + RESET)
+    print(GREEN + "WELCOME TO THE SYSTEM, OPERATOR" + RESET)
+else:
+    print(RED + "SYSTEM BLOCKED, GOODBYE" + RESET)
+    exit()
+
+
+while True:
+    command = input(YELLOW + "ENTER CMD: " + RESET).lower().strip()
+
+    if command == 'menu':
+        menu_prompt()
+
+    elif command == 'whoami':
+        print(CYAN + f"CURRENT USER: {user}" + RESET)
+
+    elif command == "append file":
+        filename = input(YELLOW + "ENTER FILENAME TO APPEND TO: " + RESET)
+        new_text = input(YELLOW + "ENTER TEXT TO ADD: " + RESET)
+
+        try:
+            with open(filename, "a") as f:
+                f.write("\n" + new_text)
+            print(GREEN + "TEXT APPENDED." + RESET)
+        except FileNotFoundError:
+            print(RED + "FILE NOT FOUND." + RESET)
+
+    elif command == 'open file':
+        print(CYAN + "OPENING FILE..." + RESET)
+        content = input(YELLOW + "ENTER INFORMATION: " + RESET)
+
+        with open("ceo_password.txt", "w") as f:
+            f.write(content)
+        print(GREEN + "FILE CREATED" + RESET)
+
+    elif command == 'read file':
+        try:
+            with open("ceo_password.txt", "r") as f:
+                txt = f.read()
+            print(CYAN + "=== FILE CONTENT ====" + RESET)
+            print(txt)
+            print(CYAN + "=====================" + RESET)
+        except FileNotFoundError:
+            print(RED + "FILE NOT FOUND." + RESET)
+
+    elif command == 'users':
+        print(CYAN + "REGISTERED USERS:" + RESET)
+        for u in users:
+            print(GREEN + "  " + u + RESET)
+
+    elif command == 'exit':
+        print(RED + "TERMINATING SESSION" + RESET)
+        break
+
+    else:
+        print(RED + "UNKNOWN COMMAND. TYPE 'menu' FOR AVAILABLE CMDS" + RESET)
