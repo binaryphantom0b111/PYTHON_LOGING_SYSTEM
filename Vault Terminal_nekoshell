@@ -27,6 +27,20 @@ def menu_prompt():
     print(CYAN + "========================" + RESET)
 
 
+def startup_banner():
+    print(CYAN + "========================================" + RESET)
+    print(BLUE + "        N E K O S H E L L   v1.0" + RESET)
+    print(CYAN + "========================================" + RESET)
+    print(GREEN + "   Secure Access Terminal Initialized" + RESET)
+    print(GREEN + "   Authorization Required..." + RESET)
+    print(CYAN + "----------------------------------------" + RESET)
+    input ("PRESS ENTER TO CONTINUE")
+
+startup_banner()
+
+
+
+
 def login():
     global attempt
     while attempt > 0:
